@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TravelBudget Admin</div>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="../index.html">Main Site</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <h1>Admin Dashboard</h1>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <p id="totalUsers">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Trips</h3>
+                <p id="totalTrips">0</p>
+            </div>
+        </div>
+        
+        <div class="admin-actions">
+            <h2>Quick Actions</h2>
+            <a href="destinations.html" class="btn">Manage Destinations</a>
+            <a href="currency.html" class="btn">Manage Currency</a>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const trips = JSON.parse(localStorage.getItem('trips')) || [];
+            
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('totalTrips').textContent = trips.length;
+        });
+    </script>
+</body>
+</html>

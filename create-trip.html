@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Trip - Travel Budget Tracker</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TravelBudget</div>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="trips.html">My Trips</a>
+                <a href="#" onclick="userManager.logout()">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Create New Trip</h2>
+            <form id="tripForm">
+                <div class="form-group">
+                    <label>Destination</label>
+                    <input type="text" id="destination" required>
+                </div>
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input type="date" id="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input type="date" id="endDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Budget ($)</label>
+                    <input type="number" id="budget" required>
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea id="notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn">Create Trip</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+    <script>
+        checkAuth();
+        
+        document.getElementById('tripForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const tripData = {
+                destination: document.getElementById('destination').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value,
+                budget: parseFloat(document.getElementById('budget').value),
+                notes: document.getElementById('notes').value,
+                userId: userManager.currentUser.id
+            };
+            
+            tripManager.createTrip(tripData);
+            alert('Trip created successfully!');
+            window.location.href = 'trips.html';
+        });
+    </script>
+</body>
+</html>
